@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparação de Populações</title>
+    <link rel="stylesheet" href="styles.css" >
+</head>
+
+<body>
+    <div class="container">
+
+        <h1> Comparação de populações</h1>
+
+        <form id="formCalculo">
+
+            <div class="inputs">
+                <label for="popA"> População do pais A </label>
+
+            <input type="number" id="popA" placeholder="População do País A">
+
+            <label for="taxaA"> Taxa de crescimento anual do pais A (%) : </label>
+
+            <input type="number" id=" taxaA" placeholder="Taxa de crescimento do pais A">
+
+            <label for="pop8"> População do pais B : </label>
+
+            <input type="number" id="popB" placeholder="População do pais B">
+
+            <label for="TaxaB"> Taxa de crescimento anual do pais B:</label>
+
+            <input type="number" id="taxaB" placeholder="Taxa de cresimento do país B:">
+
+    </div>
+
+    <button type="button" onclick="calcularAnos()"> Calcular </button>
+
+    <br><br><br>
+
+    <button type="button" onclick="limparCampos()"> Limpar </button>
+
+    </form>
+
+    <div id="resultado"></div>
+
+    </div>
+
+</body>
+
+</html>
