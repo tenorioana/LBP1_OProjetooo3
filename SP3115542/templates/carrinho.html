@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+</head>
+<body>
+    <h1>Carrinho </h1>
+    <ul>
+        {% for exame_id, exame in itens.items() %}
+            <li>
+                <strong>{{ exame.nome }}</strong> - R$ {{ exame.preco }}
+                <form action="{{ url_for('remover_do_carrinho', exame_id=exame_id) }}" method="POST">
+                    <button type="submit">Remover</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total: R$ {{ itens.values() | map(attribute='preco') | sum }}</p>
+    <a href="{{ url_for('chamahtml') }}">Continuar comprando</a>
+</body>
+</html>

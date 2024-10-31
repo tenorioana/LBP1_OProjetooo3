@@ -9,12 +9,39 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <h1> Escolha uma opção para fazer login: </h1>
-    <button> <a href="http://127.0.0.1:5000/loginmedico">Médico</a></button>
-    <button> <a href="http://127.0.0.1:5000/loginpaciente">Paciente</a></button>
+    <h1>Escolha uma opção para fazer login:</h1>
+    <button><a href="{{ url_for('loginMedico') }}" class="button">Médico</a></button>
+    <button><a href="{{ url_for('loginpaciente') }}" class="button">Paciente</a></button>
+    
+    <h2>Opções de Exames</h2>
+    <ul>
+        {% for exame_id, exame in exames.items() %}
+            <li>
+                {{ exame.nome }} - R$ {{ exame.preco }}
+                <form action="{{ url_for('adicionar_ao_carrinho', exame_id=exame_id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="button">Adicionar ao Carrinho</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Seu Carrinho</h2>
+    <p><a href="{{ url_for('carrinho') }}" class="button">Ver Carrinho</a></p>
 
     {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
@@ -25,9 +52,5 @@
             </ul>
         {% endif %}
     {% endwith %}
-    {% if session.username %}
-    {% else %}
-        <a href="{{ url_for('login') }}">Login</a>
-    {% endif %}
 </body>
 </html>
